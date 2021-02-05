@@ -47,7 +47,7 @@
 
       const sectionStack = [];
       const popLinkString =
-        "<a href='#'' onclick='popSection(event, event.target.parentNode.parentNode.id)''>Pop!</a>";
+        "<a href='#'' onclick='popSection(event, event.target.parentNode.parentNode.id)''>pop()</a>";
       const listOfAddresses = ["0xFE", "0xFD", "0xFC", "0xFB", "0xFA", "0xF0"];
 
       function pushSection(e, sectionId) {
@@ -162,8 +162,16 @@
                 >create tools</a
               >
             </li>
-            <li>work with people</li>
-            <li>tell stories</li>
+            <li>
+              <a href="#" onclick="pushSection(event, 'workWithPeople')"
+                >work with people</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="pushSection(event, 'tellStories')"
+                >tell stories</a
+              >
+            </li>
             <li>enjoy life</li>
           </ul>
 
@@ -194,6 +202,7 @@
           margin-right: auto;
         "
       >
+        <h2>My research</h2>
         <p>
           I am a Ph.D. student in the Department of Computer Science at
           University of Maryland, College Park interested in software
@@ -242,8 +251,88 @@
           margin-right: auto;
         "
       >
+        <h2>Tools</h2>
         <p>
-          Here is all about how I create tools!
+          Here are some open-source software tools I've led the development of:
+        </p>
+        <ul>
+          <li>
+            <a target="_blank" href="https://github.com/kevin-hogan/diplomat"
+              >Diplomat</a
+            >
+            is a framework for the development and deployment of conversational
+            agents (i.e., chatbots) for use in group, goal-oriented discussions.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a target="_blank" href="https://github.com/kevin-hogan/steward"
+              >Steward</a
+            >
+            is a tool for provisioining cloud-based software development
+            environments.
+          </li>
+        </ul>
+
+        <p>
+          I was also a senior software engineer at
+          <a target="_blank" href="https://www.appian.com/">Appian</a>. You can
+          read more about my contributions to the product and the organization
+          <a href="#">here</a>.
+        </p>
+      </div>
+    </div>
+    <div
+      id="workWithPeople"
+      style="display: none; border: 1px; border-top: 0px; border-style: solid"
+    >
+      <div
+        style="
+          min-width: 350px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <h2>Collaboration</h2>
+        <p>
+          I am a current Ph.D. student in the
+          <a target="_blank" href="https://seam.cs.umd.edu/"
+            >Software Engineering at Maryland (SEAM) Lab</a
+          >
+          in the University of Maryland Computer Science Department, advised by
+          <a target="_blank" href="https://seam.cs.umd.edu/purtilo/"
+            >Jim Purtilo</a
+          >. I am the most senior student in the lab and currently supervise ~10
+          graduate and undergraduate students.
+        </p>
+        <p>
+          Prior to this, I was a senior software engineer at
+          <a target="_blank" href="https://www.appian.com/">Appian</a>.
+        </p>
+      </div>
+    </div>
+    <div
+      id="tellStories"
+      style="display: none; border: 1px; border-top: 0px; border-style: solid"
+    >
+      <div
+        style="
+          min-width: 350px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <h2>Storytelling</h2>
+        <p>
+          For about a decade, I've been an amateur songwriter. Only in the past
+          couple of years did I start performing and sharing my music with
+          others. Pre-COVID, you could find me playing open mic night at the
+          <a target="_blank" href="https://www.newdealcafe.com/"
+            >New Deal Cafe</a
+          >. I hope to return to doing this soon, and I hope to share some of my
+          work online for others to enjoy. Stay tuned!
         </p>
       </div>
     </div>
