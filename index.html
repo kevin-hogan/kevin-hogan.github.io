@@ -1,1 +1,228 @@
-Testing
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      function constructEmail() {
+        const charCodes = [
+          107,
+          101,
+          118,
+          105,
+          110,
+          46,
+          104,
+          111,
+          103,
+          97,
+          110,
+          49,
+          57,
+          57,
+          50,
+          64,
+          103,
+          109,
+          97,
+          105,
+          108,
+          46,
+          99,
+          111,
+          109,
+        ];
+        return charCodes
+          .map((code) => String.fromCharCode(code))
+          .reduce((result, next) => result + next);
+      }
+
+      function revealEmail(e) {
+        const paragraphElem = e.target.parentNode;
+        paragraphElem.removeChild(e.target);
+        paragraphElem.innerHTML =
+          paragraphElem.innerHTML + " " + constructEmail();
+      }
+
+      const sectionStack = [];
+      const popLinkString =
+        "<a href='#'' onclick='popSection(event, event.target.parentNode.parentNode.id)''>Pop!</a>";
+      const listOfAddresses = ["0xFE", "0xFD", "0xFC", "0xFB", "0xFA", "0xF0"];
+
+      function pushSection(e, sectionId) {
+        e.preventDefault();
+
+        const sectionElem = document.getElementById(sectionId);
+        if (!sectionStack.includes(sectionId)) {
+          if (sectionStack.length) {
+            const prevSectionElem = document.getElementById(
+              sectionStack[sectionStack.length - 1]
+            );
+            prevSectionElem.firstChild.lastChild.remove();
+          }
+
+          sectionStack.push(sectionId);
+          const stackAddressElem = document.createElement("div");
+          stackAddressElem.style.fontFamily = "Courier New";
+          stackAddressElem.style.padding = "2px";
+          const newAddress =
+            sectionStack.length < listOfAddresses.length
+              ? listOfAddresses[sectionStack.length - 1]
+              : "Overflow!";
+          stackAddressElem.innerHTML = newAddress + " " + popLinkString;
+          sectionElem.prepend(stackAddressElem);
+
+          const clonedSectionElem = sectionElem.cloneNode(true);
+          sectionElem.parentElement.appendChild(clonedSectionElem);
+          clonedSectionElem.style.display = "";
+          clonedSectionElem.scrollIntoView();
+          sectionElem.remove();
+        } else {
+          sectionElem.scrollIntoView();
+        }
+      }
+
+      function popSection(e, sectionId) {
+        e.preventDefault();
+        if (
+          sectionStack.length >= 1 &&
+          sectionStack[sectionStack.length - 1] === sectionId
+        ) {
+          sectionStack.pop();
+          const poppedSectionElem = document.getElementById(sectionId);
+          poppedSectionElem.style.display = "none";
+          poppedSectionElem.removeChild(poppedSectionElem.firstChild); // first child will always be stack address
+
+          if (sectionStack.length >= 1) {
+            const newTopSection = document.getElementById(
+              sectionStack[sectionStack.length - 1]
+            );
+            newTopSection.firstChild.innerHTML += popLinkString;
+            newTopSection.scrollIntoView();
+          } else {
+            document.getElementById("main").scrollIntoView();
+          }
+        } else {
+          console.log("Error popping section " + sectionId);
+        }
+      }
+    </script>
+    <div id="main" style="border: 1px; border-style: solid">
+      <div style="font-family: 'Courier New'; padding: 2px">0xFF</div>
+      <div style="width: 350px; margin-left: auto; margin-right: auto">
+        <div>
+          <img
+            style="
+              display: block;
+              margin-top: 2px;
+              margin-left: auto;
+              margin-right: auto;
+              width: 300px;
+              height: 238px;
+            "
+            src="headshot.jpg"
+          />
+
+          <p>
+            Hi, I'm Kevin Hogan. Thanks for visiting my (CURRENTLY UNDER
+            CONSTRUCTION) website!
+          </p>
+
+          <p>I am a</p>
+
+          <ul>
+            <li>computer scientist</li>
+            <li>software engineer</li>
+            <li>amateur songwriter</li>
+            <li>son, brother, uncle, and friend</li>
+            <li>... and more!</li>
+          </ul>
+
+          <p>Here, you can read about how I</p>
+
+          <ul>
+            <li>
+              <a href="#" onclick="pushSection(event, 'conductResearch')"
+                >conduct research</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="pushSection(event, 'createTools')"
+                >create tools</a
+              >
+            </li>
+            <li>work with people</li>
+            <li>tell stories</li>
+            <li>enjoy life</li>
+          </ul>
+
+          <p>
+            My email address is
+            <button
+              id="emailButton"
+              style="cursor: pointer"
+              type="button"
+              onclick="revealEmail(event)"
+            >
+              Click to reveal
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Content sections below here! -->
+    <div
+      id="conductResearch"
+      style="display: none; border: 1px; border-top: 0px; border-style: solid"
+    >
+      <div
+        style="
+          min-width: 350px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <p>
+          I am a Ph.D. student at University of Maryland, College Park
+          interested in software engineering and programming languages.
+        </p>
+        <p>Here are some papers I've published:</p>
+        <p>
+          <b>Kevin Hogan</b>, Fei Shan, Monikka Ravichandran, Aadesh Bagmar,
+          James Wang, Adam Sarsony, and James Purtilo.
+          <a
+            target="_blank"
+            href="https://link.springer.com/chapter/10.1007%2F978-3-030-48641-9_14"
+            >Decidio: A Pilot Implementation and User Study of a Novel
+            Decision-Support System</a
+          >. GDN 2020: Group Decision and Negotiation: A Multidisciplinary
+          Perspective, pp. 192-204. First Online: 13 May 2020
+        </p>
+        <p>
+          <b>Kevin Hogan</b>, Noel Warford, Robert Morrison, David Miller, Sean
+          Malone and James Purtilo.
+          <a target="_blank" href="https://ieeexplore.ieee.org/document/8990315"
+            >The Challenges of Labeling Vulnerability-Contributing Commits</a
+          >. Proceedings of 4th IEEE International Workshop on Reliability and
+          Security Data Analysis. Berlin, Germany (October 28-31, 2019).
+        </p>
+        <p>
+          Zhenyu Tang, John D. Kanu, <b>Kevin Hogan</b>, and Dinesh Manocha.
+          <a
+            target="_blank"
+            href="https://www.isca-speech.org/archive/Interspeech_2019/pdfs/1111.pdf"
+            >Regression and Classification for Direction-of-Arrival Estimation
+            with Convolutional Recurrent Neural Networks</a
+          >. Interspeech 2019.
+        </p>
+      </div>
+    </div>
+    <div
+      id="createTools"
+      style="display: none; border: 1px; border-top: 0px; border-style: solid"
+    >
+      <div style="width: 350px; margin-left: auto; margin-right: auto">
+        Here is all about how I create tools!
+      </div>
+    </div>
+  </body>
+</html>
