@@ -48,7 +48,7 @@
       const sectionStack = [];
       const popLinkString =
         "<a href='#'' onclick='popSection(event, event.target.parentNode.parentNode.id)''>pop()</a>";
-      const listOfAddresses = ["0xFE", "0xFD", "0xFC", "0xFB", "0xFA", "0xF0"];
+      const listOfAddresses = ["0xFF", "0xFE", "0xFD", "0xFC", "0xFB", "0xFA", "0xF0"];
 
       function pushSection(e, sectionId) {
         e.preventDefault();
@@ -67,6 +67,7 @@
           stackAddressElem.style.fontFamily = "Courier New";
           stackAddressElem.style.padding = "2px";
           stackAddressElem.style.margin = "0px";
+          stackAddressElem.style.textAlign = "center"
           const newAddress =
             sectionStack.length < listOfAddresses.length
               ? listOfAddresses[sectionStack.length - 1]
@@ -110,9 +111,6 @@
       }
     </script>
     <div id="main" style="border: 1px; border-style: solid">
-      <p style="font-family: 'Courier New'; padding: 2px; margin-top: 0px">
-        0xFF
-      </p>
       <div
         style="
           min-width: 400px;
